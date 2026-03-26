@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <Platforms>AnyCPU</Platforms>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <Description>A thread-safe utility for obtaining OpenAI's OpenApiClient singleton.</Description>
+        <Version Condition="'$(BUILD_VERSION)' == ''">4.0.0</Version>
+        <Version Condition="'$(BUILD_VERSION)' != ''">$(BUILD_VERSION)</Version>
+        <AssemblyName>Soenneker.OpenAI.OpenApiClientUtil</AssemblyName>
+        <PackageId>Soenneker.OpenAI.OpenApiClientUtil</PackageId>
+        <PackageTags>openai openapiclientutil openapi api openapiclient kiota client util singleton openaiopenapiclientutil csharp dotnet c# .net</PackageTags>
+        <Copyright>Copyright © 2026 Jake Soenneker</Copyright>
+        <Authors>Jake Soenneker</Authors>
+        <Company>https://soenneker.com</Company>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <IsPackable>true</IsPackable>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/soenneker/soenneker.openai.openapiclientutil</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/soenneker/soenneker.openai.openapiclientutil</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryBranch>main</RepositoryBranch>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <LangVersion>latest</LangVersion>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageIcon>icon.png</PackageIcon>
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+        <None Include="..\..\LICENSE" Pack="true" PackagePath="\" />
+        <None Include="..\..\icon.png" Pack="true" PackagePath="\" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Soenneker.Kiota.GenericAuthenticationProvider" Version="4.0.29" />
+        <PackageReference Include="Soenneker.OpenAI.HttpClients" Version="4.0.1" />
+        <PackageReference Include="Soenneker.OpenAI.OpenApiClient" Version="4.0.2" />
+        <PackageReference Include="Soenneker.Utils.AsyncSingleton" Version="4.0.783" />
+    </ItemGroup>
+</Project>
