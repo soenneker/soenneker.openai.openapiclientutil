@@ -1,20 +1,19 @@
 using Soenneker.OpenAI.OpenApiClientUtil.Abstract;
-using Soenneker.Tests.FixturedUnit;
-using Xunit;
+using Soenneker.Tests.HostedUnit;
 
 namespace Soenneker.OpenAI.OpenApiClientUtil.Tests;
 
-[Collection("Collection")]
-public sealed class OpenAIOpenApiClientUtilTests : FixturedUnitTest
+[ClassDataSource<Host>(Shared = SharedType.PerTestSession)]
+public sealed class OpenAIOpenApiClientUtilTests : HostedUnitTest
 {
     private readonly IOpenAIOpenApiClientUtil _openapiclientutil;
 
-    public OpenAIOpenApiClientUtilTests(Fixture fixture, ITestOutputHelper output) : base(fixture, output)
+    public OpenAIOpenApiClientUtilTests(Host host) : base(host)
     {
         _openapiclientutil = Resolve<IOpenAIOpenApiClientUtil>(true);
     }
 
-    [Fact]
+    [Test]
     public void Default()
     {
 
