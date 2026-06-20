@@ -26,7 +26,7 @@ public sealed class OpenAIOpenApiClientUtil : IOpenAIOpenApiClientUtil
             HttpClient httpClient = await httpClientUtil.Get(token).NoSync();
 
             var apiKey = configuration.GetValueStrict<string>("OpenAI:ApiKey");
-            string authHeaderValueTemplate = configuration["OpenAI:AuthHeaderValueTemplate"] ?? "{token}";
+            string authHeaderValueTemplate = configuration["OpenAI:AuthHeaderValueTemplate"] ?? "Bearer {token}";
             string authHeaderValue = authHeaderValueTemplate.Replace("{token}", apiKey, StringComparison.Ordinal);
 
             var requestAdapter = new HttpClientRequestAdapter(new GenericAuthenticationProvider(headerValue: authHeaderValue), httpClient: httpClient);
