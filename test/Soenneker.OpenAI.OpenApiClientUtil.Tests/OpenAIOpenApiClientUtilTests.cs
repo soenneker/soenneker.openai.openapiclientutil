@@ -27,7 +27,6 @@ public sealed class OpenAIOpenApiClientUtilTests : HostedUnitTest
     [Test]
     public void Default()
     {
-
     }
 
     [Test]
@@ -37,19 +36,17 @@ public sealed class OpenAIOpenApiClientUtilTests : HostedUnitTest
         using var httpClient = new HttpClient(handler);
         await using var httpClientUtil = new TestOpenAIOpenApiHttpClient(httpClient);
 
-        IConfiguration configuration = new ConfigurationBuilder()
-            .AddInMemoryCollection(new Dictionary<string, string?>
-            {
-                ["OpenAI:ApiKey"] = "test-key"
-            })
-            .Build();
+        IConfiguration configuration = new ConfigurationBuilder().AddInMemoryCollection(new Dictionary<string, string?>
+        {
+            ["OpenAI:ApiKey"] = "test-key"
+        }).Build();
 
         await using var util = new OpenAIOpenApiClientUtil(httpClientUtil, configuration);
         OpenAIOpenApiClient client = await util.Get(CancellationToken.None);
 
         await client.Moderations.PostAsync(new CreateModerationRequest
         {
-            Input = new CreateModerationRequest.CreateModerationRequest_input
+            Input = new CreateModerationRequestInput
             {
                 CreateModerationRequestInputString = "test"
             }
@@ -86,14 +83,16 @@ public sealed class OpenAIOpenApiClientUtilTests : HostedUnitTest
     {
         public string? AuthorizationHeader { get; private set; }
 
-        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
+            CancellationToken cancellationToken)
         {
             if (request.Headers.TryGetValues("Authorization", out IEnumerable<string>? values))
                 AuthorizationHeader = values.SingleOrDefault();
 
             return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK)
             {
-                Content = new StringContent("""{"id":"modr_test","model":"omni-moderation-latest","results":[]}""", Encoding.UTF8, "application/json")
+                Content = new StringContent("""{"id":"modr_test","model":"omni-moderation-latest","results":[]}""",
+                    Encoding.UTF8, "application/json")
             });
         }
     }
