@@ -43,7 +43,7 @@
     <ItemGroup>
         <PackageReference Include="Soenneker.Kiota.GenericAuthenticationProvider" Version="4.0.38" />
         <PackageReference Include="Soenneker.OpenAI.HttpClients" Version="4.0.81" />
-        <PackageReference Include="Soenneker.OpenAI.OpenApiClient" Version="4.0.97" />
+        <PackageReference Include="Soenneker.OpenAI.OpenApiClient" Version="4.0.98" />
         <PackageReference Include="Soenneker.Utils.AsyncSingleton" Version="4.0.819" />
     </ItemGroup>
 </Project>
