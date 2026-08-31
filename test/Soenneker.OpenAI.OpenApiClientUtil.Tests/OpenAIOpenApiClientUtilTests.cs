@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 using Soenneker.OpenAI.HttpClients.Abstract;
 using Soenneker.OpenAI.OpenApiClient;
 using Soenneker.OpenAI.OpenApiClient.Models;
@@ -30,18 +30,14 @@ public sealed class OpenAIOpenApiClientUtilTests : HostedUnitTest
     }
 
     [Test]
-    public async ValueTask Get_ShouldUseBearerAuthorizationByDefault()
+    public async ValueTask Get_ShouldPreserveProviderAuthorization()
     {
         using var handler = new CapturingHandler();
         using var httpClient = new HttpClient(handler);
+        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "test-key");
         await using var httpClientUtil = new TestOpenAIOpenApiHttpClient(httpClient);
 
-        IConfiguration configuration = new ConfigurationBuilder().AddInMemoryCollection(new Dictionary<string, string?>
-        {
-            ["OpenAI:ApiKey"] = "test-key"
-        }).Build();
-
-        await using var util = new OpenAIOpenApiClientUtil(httpClientUtil, configuration);
+        await using var util = new OpenAIOpenApiClientUtil(httpClientUtil);
         OpenAIOpenApiClient client = await util.Get(CancellationToken.None);
 
         await client.Moderations.PostAsync(new CreateModerationRequest

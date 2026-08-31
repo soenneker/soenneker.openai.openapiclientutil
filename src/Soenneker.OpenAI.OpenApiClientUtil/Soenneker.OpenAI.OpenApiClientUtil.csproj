@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <Description>A thread-safe utility for obtaining OpenAI's OpenApiClient singleton.</Description>
+        <Description>Provides a configured OpenAI REST API client and reuses it for the lifetime of the registered service.</Description>
         <Version Condition="'$(BUILD_VERSION)' == ''">4.0.0</Version>
         <Version Condition="'$(BUILD_VERSION)' != ''">$(BUILD_VERSION)</Version>
         <AssemblyName>Soenneker.OpenAI.OpenApiClientUtil</AssemblyName>
@@ -41,7 +41,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Soenneker.Kiota.GenericAuthenticationProvider" Version="4.0.41" />
         <PackageReference Include="Soenneker.OpenAI.HttpClients" Version="4.0.91" />
         <PackageReference Include="Soenneker.OpenAI.OpenApiClient" Version="4.0.107" />
         <PackageReference Include="Soenneker.Utils.AsyncSingleton" Version="4.0.820" />
