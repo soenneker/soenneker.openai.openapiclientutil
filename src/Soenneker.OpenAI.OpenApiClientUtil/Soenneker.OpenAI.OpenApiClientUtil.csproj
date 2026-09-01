@@ -42,7 +42,7 @@
 
     <ItemGroup>
         <PackageReference Include="Soenneker.OpenAI.HttpClients" Version="4.0.96" />
-        <PackageReference Include="Soenneker.OpenAI.OpenApiClient" Version="4.0.109" />
+        <PackageReference Include="Soenneker.OpenAI.OpenApiClient" Version="4.0.110" />
         <PackageReference Include="Soenneker.Utils.AsyncSingleton" Version="4.0.830" />
     </ItemGroup>
 </Project>
