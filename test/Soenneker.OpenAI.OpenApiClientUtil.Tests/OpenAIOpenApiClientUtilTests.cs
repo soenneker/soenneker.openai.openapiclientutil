@@ -30,7 +30,7 @@ public sealed class OpenAIOpenApiClientUtilTests : HostedUnitTest
     }
 
     [Test]
-    public async ValueTask Get_ShouldPreserveProviderAuthorization()
+    public async ValueTask Get_ShouldPreserveProviderAuthorization(CancellationToken cancellationToken)
     {
         using var handler = new CapturingHandler();
         using var httpClient = new HttpClient(handler);
@@ -38,7 +38,7 @@ public sealed class OpenAIOpenApiClientUtilTests : HostedUnitTest
         await using var httpClientUtil = new TestOpenAIOpenApiHttpClient(httpClient);
 
         await using var util = new OpenAIOpenApiClientUtil(httpClientUtil);
-        OpenAIOpenApiClient client = await util.Get(CancellationToken.None);
+        OpenAIOpenApiClient client = await util.Get(cancellationToken);
 
         await client.Moderations.PostAsync(new CreateModerationRequest
         {
