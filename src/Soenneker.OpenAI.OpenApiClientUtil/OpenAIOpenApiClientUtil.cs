@@ -11,6 +11,7 @@ using Soenneker.Utils.AsyncSingleton;
 
 namespace Soenneker.OpenAI.OpenApiClientUtil;
 
+/// <inheritdoc cref="IOpenAIOpenApiClientUtil" />
 public sealed class OpenAIOpenApiClientUtil : IOpenAIOpenApiClientUtil
 {
     private readonly AsyncSingleton<OpenAIOpenApiClient> _client;
