@@ -46,7 +46,7 @@ public sealed class OpenAIOpenApiClientUtilTests : HostedUnitTest
             {
                 CreateModerationRequestInputString = "test"
             }
-        }, cancellationToken: CancellationToken.None);
+        }, cancellationToken: cancellationToken);
 
         await Assert.That(handler.AuthorizationHeader).IsEqualTo("Bearer test-key");
     }
